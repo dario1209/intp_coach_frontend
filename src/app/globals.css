@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Josefin+Sans:wght@300;400;600&display=swap');
+
+@layer base {
+  :root {
+    --font-deco: 'Poiret One', cursive;
+    --font-sans: 'Josefin Sans', ui-sans-serif, system-ui, sans-serif;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+  }
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-deco/50;
+  }
+  body {
+    @apply bg-gradient-to-br from-slate-50 to-deco-cream text-slate-900 antialiased;
+  }
+}
+
+@keyframes decoFade {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}

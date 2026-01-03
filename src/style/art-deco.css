@@ -1,0 +1,29 @@
+/* Additional artisanal animations */
+@keyframes decoShimmer {
+    0% { background-position: -468px 0; }
+    100% { background-position: 468px 0; }
+  }
+  
+  .deco-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
+    background-size: 300px 100%;
+    animation: decoShimmer 2s infinite;
+  }
+  
+  .deco-ornament {
+    position: relative;
+  }
+  
+  .deco-ornament::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(45deg, #D4AF37, #CD7F32);
+    border-radius: 0.75rem;
+    z-index: -1;
+    opacity: 0.3;
+  }
+  

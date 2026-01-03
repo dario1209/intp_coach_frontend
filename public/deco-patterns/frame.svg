@@ -1,0 +1,11 @@
+<svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="deco-grid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#D4AF37" stroke-width="1" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="300" height="200" fill="url(#deco-grid)" opacity="0.1"/>
+  <!-- corner ornaments -->
+  <path d="M0 0 L10 10 M0 10 L10 0" stroke="#CD7F32" stroke-width="3" stroke-linecap="round"/>
+  <path d="M290 0 L280 10 M290 10 L280 0" stroke="#CD7F32" stroke-width="3" stroke-linecap="round"/>
+</svg>

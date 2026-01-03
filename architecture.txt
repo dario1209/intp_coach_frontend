@@ -1,0 +1,50 @@
+intp_coach_frontend/
+  .env.local                 # NEXT_PUBLIC_API_URL, etc.
+  next.config.mjs
+  package.json
+  tsconfig.json
+  postcss.config.mjs
+  tailwind.config.mjs
+  public/
+    favicon.ico
+    logo.svg
+    deco-patterns/          # svg patterns for art deco borders/backgrounds
+  src/
+    app/
+      layout.tsx            # Shell: header, 3-column layout, Art Deco frame
+      page.tsx              # Main coach UI (chat + panels)
+      globals.css           # Tailwind base + art deco variables
+      api/                  # (optional) Next serverless routes if needed later
+    components/
+      layout/
+        Shell.tsx
+        Sidebar.tsx
+        RightPanel.tsx
+        DecoFrame.tsx
+      chat/
+        ChatWindow.tsx
+        MessageBubble.tsx
+        InputBar.tsx
+      coach/
+        IntpProfileCard.tsx
+        GoalList.tsx
+        ExperimentBoard.tsx
+        SessionStats.tsx
+      ui/
+        Button.tsx
+        Card.tsx
+        Tabs.tsx
+        Badge.tsx
+        Tooltip.tsx
+    lib/
+      apiClient.ts           # fetch wrapper to Railway backend
+      config.ts              # frontend config (API base URL, feature flags)
+      artDecoTheme.ts        # color tokens, spacing, border radius rules
+      intpPrompts.ts         # front-end prompt templates for quick actions
+    hooks/
+      useCoachChat.ts        # chat state, streaming handling (if used)
+      useSessionPlan.ts
+    styles/
+      art-deco.css           # extra artisanal CSS for borders/animations
+    types/
+      coach.ts               # shared TypeScript types for messages, plans
