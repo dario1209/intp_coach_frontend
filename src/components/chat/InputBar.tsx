@@ -20,7 +20,7 @@ export default function InputBar() {
   return (
     <form onSubmit={handleSubmit} className="p-6 border-t border-slate-200 bg-white/50">
       <div className="flex gap-3">
-        <input
+        <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Ask your coach... (e.g., 'Help me debug my focus system')"
