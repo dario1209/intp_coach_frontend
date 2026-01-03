@@ -18,9 +18,6 @@
 }
 
 @layer base {
-  * {
-    @apply border-deco/50;
-  }
   body {
     @apply bg-gradient-to-br from-slate-50 to-deco-cream text-slate-900 antialiased;
   }
