@@ -1,50 +1,93 @@
 intp_coach_frontend/
   .env.local                 # NEXT_PUBLIC_API_URL, etc.
+  .gitignore
   next.config.mjs
   package.json
+  package-lock.json
   tsconfig.json
   postcss.config.mjs
   tailwind.config.mjs
+  architecture.txt           # This file - project structure documentation
+
   public/
-    favicon.ico
-    logo.svg
-    deco-patterns/          # svg patterns for art deco borders/backgrounds
+    logo.svg                 # INTP Coach logo
+    deco-patterns/           # SVG patterns for art deco borders/backgrounds
+
   src/
     app/
-      layout.tsx            # Shell: header, 3-column layout, Art Deco frame
-      page.tsx              # Main coach UI (chat + panels)
-      globals.css           # Tailwind base + art deco variables
-      api/                  # (optional) Next serverless routes if needed later
+      layout.tsx             # Root layout with Providers and DecoFrame
+      page.tsx               # Main coach UI (Shell component)
+      globals.css            # Tailwind base + art deco variables
+      types/
+        coach.ts             # Duplicate (see src/types/coach.ts)
+
     components/
+      Providers.tsx          # React Query provider wrapper
+
       layout/
-        Shell.tsx
-        Sidebar.tsx
-        RightPanel.tsx
-        DecoFrame.tsx
+        Shell.tsx            # 3-column layout: Sidebar | ChatWindow | RightPanel
+        Sidebar.tsx          # Left navigation panel (isOpen/onClose props)
+        RightPanel.tsx       # Right panel displaying GoalList
+        DecoFrame.tsx        # Art deco decorative frame wrapper
+
       chat/
-        ChatWindow.tsx
-        MessageBubble.tsx
-        InputBar.tsx
+        ChatWindow.tsx       # Main chat interface container
+        MessageBubble.tsx    # Individual message display with loading states
+        InputBar.tsx         # Chat input with textarea (fixed: input -> textarea)
+
       coach/
-        IntpProfileCard.tsx
-        GoalList.tsx
-        ExperimentBoard.tsx
-        SessionStats.tsx
+        IntpProfileCard.tsx  # User INTP profile display with focus score & experiments
+        GoalList.tsx         # Active/pending/completed goals list
+        ExperimentBoard.tsx  # Experiment tracking display
+        SessionStats.tsx     # Session statistics display
+
       ui/
-        Button.tsx
-        Card.tsx
-        Tabs.tsx
-        Badge.tsx
-        Tooltip.tsx
+        Button.tsx           # Custom button with variants (no class-variance-authority)
+        Card.tsx             # Card container component
+        Tabs.tsx             # Tab navigation component
+        Badge.tsx            # Badge component with variants (no class-variance-authority)
+        Tooltip.tsx          # Tooltip component
+
     lib/
-      apiClient.ts           # fetch wrapper to Railway backend
-      config.ts              # frontend config (API base URL, feature flags)
-      artDecoTheme.ts        # color tokens, spacing, border radius rules
-      intpPrompts.ts         # front-end prompt templates for quick actions
+      apiClient.ts           # Fetch wrapper to Railway backend
+      config.ts              # Frontend config (API base URL, feature flags)
+      artDecoTheme.ts        # Color tokens, spacing, border radius rules
+      intpPrompts.ts         # Front-end prompt templates for quick actions
+      utils.ts               # Utility functions (cn helper for className merging)
+
     hooks/
-      useCoachChat.ts        # chat state, streaming handling (if used)
-      useSessionPlan.ts
-    styles/
-      art-deco.css           # extra artisanal CSS for borders/animations
+      useCoachChat.ts        # Chat state management with React Query & Zustand
+      useSessionPlan.ts      # Session plan state with Zustand (goals, profile, experiments)
+
+    style/
+      art-deco.css           # Extra artisanal CSS for borders/animations
+
     types/
-      coach.ts               # shared TypeScript types for messages, plans
+      coach.ts               # TypeScript types: Message, CoachChatResponse, SessionPlan, Task
+      css.d.ts               # CSS module type declarations
+
+## Key Implementation Notes:
+
+### Fixed TypeScript Issues:
+- CSS imports: Added css.d.ts for module declarations
+- Button/Badge: Replaced class-variance-authority with simple object-based variants
+- InputBar: Changed input to textarea for rows attribute
+- Message types: Created proper Message interface with role, content, isLoading
+- RightPanel: Changed from Sidebar duplicate to proper panel component
+- Sidebar: Fixed activeGoal computation from goals array
+- Providers: Commented out react-query-devtools (not installed)
+
+### State Management:
+- React Query: For server state (chat API calls)
+- Zustand: For client state (session plan, goals, experiments, profile)
+
+### Design System:
+- Art Deco theme with custom colors: deco-gold, deco-bronze, deco-navy, deco-cream, deco-teal
+- No external component libraries (custom Button, Badge, Card, etc.)
+- Tailwind CSS with custom configuration
+
+### Component Props:
+- Sidebar: { isOpen: boolean, onClose: () => void }
+- MessageBubble: { message: Message }
+- RightPanel: No props (self-contained)
+- All UI components use forwardRef pattern

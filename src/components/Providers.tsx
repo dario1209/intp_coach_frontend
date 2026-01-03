@@ -2,7 +2,8 @@
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+// Note: To use React Query DevTools, install: npm install @tanstack/react-query-devtools
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 export default function Providers({
   children,
@@ -24,7 +25,8 @@ export default function Providers({
   return (
     <QueryClientProvider client={queryClient}>
       {children}
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* Uncomment after installing @tanstack/react-query-devtools */}
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );
 }

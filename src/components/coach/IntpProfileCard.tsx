@@ -3,7 +3,7 @@ import { Brain, Zap } from 'lucide-react';
 import { useSessionPlan } from '@/hooks/useSessionPlan';
 
 export default function IntpProfileCard() {
-  const { profile } = useSessionPlan();
+  const { profile, experiments } = useSessionPlan();
 
   return (
     <Card className="p-6 bg-gradient-to-br from-purple-50 to-indigo-50 border-purple-200/50 relative overflow-hidden">
@@ -35,7 +35,7 @@ export default function IntpProfileCard() {
           <div className="text-slate-600 uppercase tracking-wide">Focus</div>
         </div>
         <div className="text-center p-3 bg-white/50 rounded-lg">
-          <div className="text-2xl font-bold text-blue-600">{profile.experiments || '3'}</div>
+          <div className="text-2xl font-bold text-blue-600">{experiments || 3}</div>
           <div className="text-slate-600 uppercase tracking-wide">Active</div>
         </div>
       </div>
